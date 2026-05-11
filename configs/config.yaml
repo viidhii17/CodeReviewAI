@@ -1,0 +1,44 @@
+project:
+  name: "ai-code-reviewer"
+  version: "1.0.0"
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  max_samples: 50000
+  test_size: 0.15
+  val_size: 0.10
+  max_token_length: 512
+
+model:
+  base_model: "microsoft/codebert-base"
+  num_labels: 5
+  hidden_dropout_prob: 0.1
+
+training:
+  output_dir: "models/checkpoints"
+  num_epochs: 5
+  batch_size: 16
+  learning_rate: 2e-5
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  eval_steps: 200
+  save_steps: 500
+  logging_steps: 50
+  fp16: true
+  seed: 42
+
+bug_classes:
+  0: "no_bug"
+  1: "null_dereference"
+  2: "off_by_one"
+  3: "resource_leak"
+  4: "logic_error"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+
+wandb:
+  project: "ai-code-reviewer"
+  entity: null
