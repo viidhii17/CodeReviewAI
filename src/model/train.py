@@ -116,7 +116,7 @@ def train():
         evaluation_strategy="steps",
         eval_steps=200,
         save_strategy="steps",
-        save_steps=500,
+        save_steps=400,
         load_best_model_at_end=True,
         metric_for_best_model="f1_macro",
         greater_is_better=True,
